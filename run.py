@@ -3,17 +3,27 @@
 
 import sys
 
-from PyQt5.QtCore import QUrl
+from PyQt5.QtCore import *
 from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtQuick import QQuickView
 
-# Create Qt application and the QDeclarative view
+class submitUserInput(QObject):
+    @pyqtSlot()
+    def clicked(self):
+        print("Clicked!")
+
 app = QGuiApplication(sys.argv)
 view = QQuickView()
-# Create an URL to the QML file
 url = QUrl('main.qml')
-# Set the QML file and show
 view.setSource(url)
+
+
+submit = submitUserInput()
+
+context = view.rootContext()
+context.setContextProperty("submit", submit)
+#context.onClicked.connect(submit.clicked)
 view.show()
-# Enter Qt main loop
+
+
 sys.exit(app.exec_())
