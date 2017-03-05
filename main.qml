@@ -5,18 +5,6 @@ Rectangle {
     width: 800
     height: 600
 
-    Button {
-        id: submitUserInputButton
-        x: 535
-        y: 468
-        width: 159
-        height: 40
-        text: qsTr("Submit")
-        onClicked: {
-            submit.clicked()
-        }
-
-    }
 
     TextField {
         id: addShopLinkTextField
@@ -26,7 +14,17 @@ Rectangle {
         height: 40
         text: qsTr("Shop Link")
     }
-
+    Button {
+        id: addShopLinkButton
+        x: 97
+        y: 175
+        width: 115
+        height: 40
+        text: qsTr("Add Shop Link")
+        onClicked: {
+            shopListModel.append({shopLink:addShopLinkTextField.text})
+        }
+    }
     ListView {
         id: shop_listView
         x: 97
@@ -52,6 +50,10 @@ Rectangle {
             }
         }
     }
+
+
+
+
 
     ListView {
         id: card_listView
@@ -84,29 +86,6 @@ Rectangle {
             }
         }
     }
-    Button {
-        id: addCardButton
-        x: 373
-        y: 175
-        width: 115
-        height: 40
-        text: qsTr("Add Card")
-        onClicked: {
-            cardListModel.append({name:addCardNameTextField.text, number:addCardNumberTextField.text})
-        }
-    }
-    Button {
-        id: addShopLinkButton
-        x: 97
-        y: 175
-        width: 115
-        height: 40
-        text: qsTr("Add Shop Link")
-        onClicked: {
-            shopListModel.append({shopLink:addShopLinkTextField.text})
-        }
-    }
-
     TextField {
         id: addCardNameTextField
         x: 373
@@ -121,5 +100,29 @@ Rectangle {
         width: 98
         height: 40
         text: qsTr("Number")
+    }
+    Button {
+        id: addCardButton
+        x: 373
+        y: 175
+        width: 115
+        height: 40
+        text: qsTr("Add Card")
+        onClicked: {
+            cardListModel.append({name:addCardNameTextField.text, number:addCardNumberTextField.text})
+        }
+    }
+
+
+    Button {
+        id: submitUserInputButton
+        x: 535
+        y: 468
+        width: 159
+        height: 40
+        text: qsTr("Submit")
+        onClicked: {
+            submit.clicked()
+        }
     }
 }
