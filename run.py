@@ -7,23 +7,30 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtQuick import QQuickView
 
+VIEW = None
+APP = None
+
 class submitUserInput(QObject):
     @pyqtSlot()
     def clicked(self):
         print("Clicked!")
 
-app = QGuiApplication(sys.argv)
-view = QQuickView()
-url = QUrl('main.qml')
-view.setSource(url)
+def main():
+    global VIEW
+    global APP
+    APP = QGuiApplication(sys.argv)
+    VIEW = QQuickView()
+    url = QUrl('main.qml')
+    VIEW.setSource(url)
 
 
-submit = submitUserInput()
+    submit = submitUserInput()
 
-context = view.rootContext()
-context.setContextProperty("submit", submit)
-#context.onClicked.connect(submit.clicked)
-view.show()
+    context = VIEW.rootContext()
+    context.setContextProperty("submit", submit)
+    VIEW.show()
 
 
-sys.exit(app.exec_())
+    sys.exit(APP.exec_())
+
+main()
