@@ -7,8 +7,10 @@ Rectangle {
 
     Button {
         id: submitUserInputButton
-        x: 505
-        y: 422
+        x: 535
+        y: 468
+        width: 159
+        height: 40
         text: qsTr("Submit")
         onClicked: {
             submit.clicked()
@@ -20,7 +22,9 @@ Rectangle {
         id: addShopLinkTextField
         x: 97
         y: 114
-        text: qsTr("Text Field")
+        width: 238
+        height: 40
+        text: qsTr("Shop Link")
     }
 
     ListView {
@@ -49,6 +53,48 @@ Rectangle {
         }
     }
 
+    ListView {
+        id: card_listView
+        x: 373
+        y: 236
+        width: 321
+        height: 226
+        delegate: Item {
+            x: 5
+            width: 80
+            height: 40
+            Row {
+                Text {text: name}
+                Text {text: " : "}
+                Text {text: number}
+
+            }
+        }
+        model: ListModel {
+            id: cardListModel
+            ListElement {
+                name: "背心"
+                //name: "back"
+                number: "3"
+            }
+            ListElement {
+                name: "胸罩"
+                //name: "back"
+                number: "5"
+            }
+        }
+    }
+    Button {
+        id: addCardButton
+        x: 373
+        y: 175
+        width: 115
+        height: 40
+        text: qsTr("Add Card")
+        onClicked: {
+            cardListModel.append({name:addCardNameTextField.text, number:addCardNumberTextField.text})
+        }
+    }
     Button {
         id: addShopLinkButton
         x: 97
@@ -59,5 +105,21 @@ Rectangle {
         onClicked: {
             shopListModel.append({shopLink:addShopLinkTextField.text})
         }
+    }
+
+    TextField {
+        id: addCardNameTextField
+        x: 373
+        y: 114
+        text: qsTr("Card Name")
+    }
+
+    TextField {
+        id: addCardNumberTextField
+        x: 596
+        y: 114
+        width: 98
+        height: 40
+        text: qsTr("Number")
     }
 }
