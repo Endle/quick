@@ -11,9 +11,14 @@ VIEW = None
 APP = None
 
 class submitUserInput(QObject):
+    shopLinks = []
+    @pyqtSlot(str)
+    def appendShop(self, slink):
+        self.shopLinks.append(slink)
     @pyqtSlot()
     def clicked(self):
         print("Clicked!")
+        print(self.shopLinks)
 
 def main():
     global VIEW

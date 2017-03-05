@@ -45,6 +45,7 @@ Rectangle {
         }
         model: ListModel {
             id: shopListModel
+            objectName: "shopListModel"
             ListElement {
                 shopLink: "https://shop62237807.taobao.com/"
             }
@@ -121,7 +122,12 @@ Rectangle {
         width: 159
         height: 40
         text: qsTr("Submit")
+        //i: 0
         onClicked: {
+            var i
+            for(i=0; i<shopListModel.count; i++) {
+                submit.appendShop( shopListModel.get(i).shopLink );
+            }
             submit.clicked()
         }
     }
