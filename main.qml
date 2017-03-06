@@ -128,6 +128,10 @@ Rectangle {
             for(i=0; i<shopListModel.count; i++) {
                 submit.appendShop( shopListModel.get(i).shopLink );
             }
+            for(i=0; i<cardListModel.count; i++) {
+                submit.appendCard( cardListModel.get(i).name, cardListModel.get(i).number)
+            }
+
             submit.clicked()
         }
     }
